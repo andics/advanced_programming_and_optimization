@@ -43,8 +43,8 @@ def ex1():
             print(f"#{i+1} is tight: ", constraint)
             tight_constranints.append(i+1)
 
-    retval["x"] = model.variables()[0].varValue
-    retval["y"] = model.variables()[1].varValue
+    retval["x"] = x.varValue
+    retval["y"] = y.varValue
     retval["obj"] = model.objective.value()
     retval["tight_constraints"] = tight_constranints
 
