@@ -65,7 +65,7 @@ def ex2():
     # Insert your code below:
     # This is a zero-sum ga,e which we can formulate as an LP as follows:
     model = pulp.LpProblem("MaximizationProblem_ex2", pulp.LpMaximize)
-    y0 = pulp.LpVariable("y0", cat=pulp.const.LpContinuous)
+    y0 = pulp.LpVariable("y0", cat=pulp.LpContinuous)
     y1 = pulp.LpVariable("y1", lowBound=0, cat=pulp.LpContinuous)
     y2 = pulp.LpVariable("y2", lowBound=0, cat=pulp.LpContinuous)
     y3 = pulp.LpVariable("y3", lowBound=0, cat=pulp.LpContinuous)
@@ -122,7 +122,7 @@ def ex3():
     # there should be retval['xi'] for each company number i
     # Insert your code below:
     model = pulp.LpProblem("MinimizationProblem_ex3", pulp.LpMinimize)
-    vars_dict = pulp.LpVariable.dicts(name="", indices = [f'x{i}' for i in range(1, 70)], lowBound=0,
+    vars_dict = pulp.LpVariable.dicts("", [f'x{i}' for i in range(1, 70)], lowBound=0,
                                       upBound=2, cat=pulp.LpContinuous)
 
     # Add the variables to the problem
