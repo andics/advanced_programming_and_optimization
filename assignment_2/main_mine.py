@@ -70,7 +70,7 @@ def find_rightmost_nonzero_entry_x_cord(numpy_2d_grid):
     return current_x_cord_max
 
 
-def file2_right_of_file1_and_nothing_between(file1, file2, distance_dict_sorted):
+def file2_right_of_file1(file1, file2, distance_dict_sorted):
     # Check if file2 is to the right of file1.
     # This is needed to ensure we avoid the ha-got-you
     # at play in this problem. Additionally, make sure there are
@@ -87,13 +87,15 @@ def file2_right_of_file1_and_nothing_between(file1, file2, distance_dict_sorted)
 
     if file1_rightmost_entry_x < file2_rightmost_entry_x:
         # file2 is to the right of file1
-        # Now check there is nothing in-between
+        # Ensure nothing in-between
         del distance_dict_sorted[file2]
         for file_name, dist in distance_dict_sorted.items():
             _tmp_grid = read_text_files_into_a_numpy_grid([file_name])
             _rightmost_x_cord = find_rightmost_nonzero_entry_x_cord(_tmp_grid[0, :, :])
             if _rightmost_x_cord > file1_rightmost_entry_x and _rightmost_x_cord < file2_rightmost_entry_x:
                 return False
+
+        return True
 
         return True
     else:
@@ -121,21 +123,20 @@ def comp_dist(file1, file2):
                     # Add node with its x, y coordinates and demand as attribute
                     # We want one file grid to have a negative demand (wants to send), and the
                     # other a positive one (wants to recieve)
-                    demand = float(multiplier * num_grid_normalized[file_grid, y, x])
+                    demand = int(multiplier * num_grid_normalized[file_grid, y, x])
                     G.add_node(node_counter, pos=(y, x), demand=demand)
                     node_counter += 1
 
     # Add edges to the graph
     for u in G.nodes():
-        ux, uy = G.nodes[u]['pos']
+        uy, ux = G.nodes[u]['pos']
         for v in G.nodes():
-            vx, vy = G.nodes[v]['pos']
-            if (G.nodes[u]['demand'] > 0 and G.nodes[v]['demand'] < 0) or\
-                    (G.nodes[u]['demand'] < 0 and G.nodes[v]['demand'] > 0):
+            vy, vx = G.nodes[v]['pos']
+            if (G.nodes[u]['demand'] < 0 and G.nodes[v]['demand'] > 0):
                 #Check if the nodes are a sender/reciever pair
 
                 # Calculate Euclidean distance between nodes
-                dist = int(np.round(np.sqrt((ux - vx) ** 2 + (uy - vy) ** 2)))
+                dist = int(np.round(np.sqrt((ux - vx) ** 2)))
                 capacity = int(min([abs(G.nodes[u]['demand']),
                                 abs(G.nodes[v]['demand'])]))
                 G.add_edge(u, v, weight = dist, capacity = capacity)
@@ -169,15 +170,16 @@ def sort_files():
             we_selected_an_img_to_the_right = False
             distance_dict_sorted = {k: v for k, v in sorted(distance_dict.items(), key=lambda item: item[1])}
             for potential_next_file_name, potential_next_file_emd in distance_dict_sorted.items():
-                if file2_right_of_file1_and_nothing_between(current_file,
-                                                            potential_next_file_name,
-                                                            copy.deepcopy(distance_dict_sorted)):
+                if file2_right_of_file1(current_file,
+                                        potential_next_file_name,
+                                        copy.deepcopy(distance_dict_sorted)):
                     sorted_files.append(potential_next_file_name)
                     files_left_to_choose_from.remove(potential_next_file_name)
                     current_file = potential_next_file_name
                     we_selected_an_img_to_the_right = True
                     break
 
+            # Fail-proof mechanism
             if not we_selected_an_img_to_the_right:
                 # We have a problem. All the remaining images
                 # are to the left of our current one.
