@@ -135,12 +135,10 @@ def bakery():
         problem += s[i] + baking_time_array[i] <= deadline_array[i]
         problem += s[i] >= dough_ready_array[i]
         for j in range(0, n):
-            #Constraint activator Auxiliary variables
-            alpha = LpVariable(f"alpha_{i}_{j}", lowBound=0, upBound=1, cat=LpInteger)
-            beta = LpVariable(f"beta_{i}_{j}", lowBound=0, upBound=1, cat=LpInteger)
-            problem += s[i] <= s[j] - baking_time_array[i] + M*alpha
-            problem += s[j] <= s[i] - baking_time_array[j] + M*beta
-            problem += alpha + beta <= 1
+            #Constraint activator Auxiliary variable
+            z_i_j = LpVariable(f"z_{i}_{j}", lowBound=0, upBound=1, cat=LpInteger)
+            problem += s[i] <= s[j] - baking_time_array[i] + M*z_i_j
+            problem += s[j] <= s[i] - baking_time_array[j] + M - M*z_i_j
 
     # solve the problem
     problem.solve()
@@ -154,9 +152,6 @@ def bakery():
         visualization_data.append(_visual_tuple)
 
     print("Objective value:", value(problem.objective))
-    sorted_pastries = dict(sorted(retval.items(), key=lambda item: item[1]))
-    print("sorted_pastries: ", sorted_pastries)
-    print("retval")
     print(retval)
 
     # Write visualization to the correct file:
