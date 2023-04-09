@@ -1,3 +1,5 @@
+# VERSION #2: uses one variable for non-parallelism but causes solver issues
+
 # Import packages. You can import additional packages, if you want
 # You can change the way they are imported, e.g import pulp as pl or whatever
 # But take care to adapt the solver configuration accordingly.
