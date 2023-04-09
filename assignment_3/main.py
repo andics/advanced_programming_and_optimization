@@ -5,7 +5,6 @@ from pulp import *
 from matplotlib.patches import Rectangle
 import matplotlib.pyplot as plt
 import matplotlib
-import numpy as np
 
 # Use the following solver
 solver = COIN_CMD(path="/usr/bin/cbc",threads=8)
@@ -77,7 +76,8 @@ def generate_visualization(data, filename_to_save):
     gaps = [(pastry[4] - pastry[3]) for pastry in data_sorted]
     sorted_indices = sorted(range(len(gaps)), key=lambda k: gaps[k])
     sorted_gaps = [gaps[i] for i in sorted_indices]
-    sorted_colors = [matplotlib.cm.RdBu(matplotlib.colors.Normalize(gap)) for gap in sorted_gaps]
+    norm = matplotlib.colors.Normalize(vmin=sorted_gaps[0], vmax=sorted_gaps[-1])
+    sorted_colors = [matplotlib.cm.RdBu(norm(gap)) for gap in sorted_gaps]
     axs[2].set_title("Critical to Less-critical pastries color chart")
     axs[2].bar(['#{:02d}'.format(data_sorted[i][0]) for i in sorted_indices], [1]*n, color=sorted_colors)
     axs[2].set_xlabel('Pastry')
@@ -94,7 +94,6 @@ def generate_visualization(data, filename_to_save):
 
     # Show the plot
     plt.savefig(filename_to_save, dpi=300)
-    plt.show()
 
 
 def bakery():
@@ -142,7 +141,7 @@ def bakery():
             problem += s[j] <= s[i] - baking_time_array[j] + M - M*z_i_j[i*n + j]
 
     # solve the problem
-    problem.solve()
+    problem.solve(solver)
 
     # print the solution
     retval = dict()
@@ -157,7 +156,7 @@ def bakery():
     print("Objective value:", value(problem.objective))
     sorted_pastries = dict(sorted(retval.items(), key=lambda item: item[1]))
     print(sorted_pastries)
-    print("retval:")
+    print("retval")
     print(retval)
 
     # Write visualization to the correct file:
