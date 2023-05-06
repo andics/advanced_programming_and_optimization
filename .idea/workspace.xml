@@ -2,34 +2,74 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30639259-9e00-44cc-b38f-a93a89e0df9e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assignment_4/main_m.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assignment_3/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/assignment_3/main_final.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assignment_3/main_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/assignment_3/main_v2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../../../Software/Miniconda3/envs/uni_testing/Lib/site-packages/cvxpy/atoms/max.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/../../../../../Software/Miniconda3/envs/uni_testing/Lib/site-packages/cvxpy/expressions/expression.py" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2O9BztyUWNDWKZuEqLyER7dWlON" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assignment_3" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "Q:/University/Bocconi/SEM_4/ADVANCED_PROGRAMMING_AND_OPT/assignments",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="Q:\University\Bocconi\SEM_4\ADVANCED_PROGRAMMING_AND_OPT\assignments\assignment_3" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main_m">
+    <configuration name="main_al" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="assignments" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/assignment_4" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/assignment_4/main_al.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main_final" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="assignments" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -42,7 +82,30 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="Q:\University\Bocconi\SEM_4\ADVANCED_PROGRAMMING_AND_OPT\assignments\assignment_3\main_final.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main_m" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="assignments" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/assignment_4" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/assignment_4/main_m.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -53,10 +116,13 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main_m" />
+        <item itemvalue="Python.main_al" />
         <item itemvalue="Python.main_final" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -67,49 +133,39 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1680963182341</updated>
+      <workItem from="1683298306895" duration="6124000" />
+      <workItem from="1683363165030" duration="28107000" />
     </task>
     <servers />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="395" y="144" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1680970433197">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="395" y="144" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1680970433197" />
-    <state width="603" height="438" key="DebuggerActiveHint" timestamp="1680999698098">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="603" height="438" key="DebuggerActiveHint/0.0.1280.680@0.0.1280.680" timestamp="1680999698098" />
-    <state width="1239" height="28" key="GridCell.Tab.0.bottom" timestamp="1681041700648">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1239" height="28" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1681041700648" />
-    <state width="1239" height="28" key="GridCell.Tab.0.center" timestamp="1681041700648">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1239" height="28" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1681041700648" />
-    <state width="1239" height="28" key="GridCell.Tab.0.left" timestamp="1681041700648">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1239" height="28" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1681041700648" />
-    <state width="1239" height="28" key="GridCell.Tab.0.right" timestamp="1681041700648">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1239" height="28" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1681041700648" />
-    <state width="1239" height="184" key="GridCell.Tab.1.bottom" timestamp="1681002340714">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1239" height="184" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1681002340714" />
-    <state width="1239" height="184" key="GridCell.Tab.1.center" timestamp="1681002340714">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1239" height="184" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1681002340714" />
-    <state width="1239" height="184" key="GridCell.Tab.1.left" timestamp="1681002340714">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1239" height="184" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1681002340714" />
-    <state width="1239" height="184" key="GridCell.Tab.1.right" timestamp="1681002340714">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1239" height="184" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1681002340714" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/assignment_4/main_al.py</url>
+          <line>98</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/assignment_4/main_m.py</url>
+          <line>175</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/assignments$main_al.coverage" NAME="main_al Coverage Results" MODIFIED="1683378478438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/assignment_4" />
+    <SUITE FILE_PATH="coverage/assignments$main_m.coverage" NAME="main_m Coverage Results" MODIFIED="1683406330241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/assignment_4" />
   </component>
 </project>
