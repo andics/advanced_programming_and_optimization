@@ -1,15 +1,14 @@
 import numpy as np
 import cvxpy as cp
-import math
 
 #######
 # DATA, do not change this part!
 #######
-a = [0.5, -0.5, 0.2, -0.7, 0.6, -0.2, 0.7, -0.5, 0.8, -0.4]
-l = [40, 20, 40, 40, 20, 40, 30, 40, 30, 60]
-Preq = np.arange(a[0], a[0] * (l[0] + 0.5), a[0])
+a=[0.5, -0.5, 0.2, -0.7, 0.6, -0.2, 0.7, -0.5, 0.8, -0.4]
+l=[40, 20, 40, 40, 20, 40, 30, 40, 30, 60]
+Preq=np.arange(a[0],a[0]*(l[0]+0.5),a[0])
 for i in range(1, len(l)):
-    Preq = np.r_[Preq, np.arange(Preq[-1] + a[i], Preq[-1] + a[i] * (l[i] + 0.5), a[i])]
+    Preq=np.r_[ Preq, np.arange(Preq[-1]+a[i],Preq[-1]+a[i]*(l[i]+0.5),a[i]) ]
 
 T = sum(l)
 
@@ -18,8 +17,6 @@ Pmg_min = -6.0
 Pmg_max = 6.0
 eta = 0.1
 gamma = 0.1
-
-
 #####
 # End of DATA part
 #####
@@ -33,6 +30,9 @@ gamma = 0.1
 
 #---EXPLAINATIONS---
 '''
+NOTE:
+1. For more detailed output on all constraints set verbose = True in print statements
+
 The following code offers implementations of both glitch-handling suggestions for the assignment. Before diving into
 the intricacies of both presented solutions, let us give a brief explanation as to why the relaxation of the E constraints
 gives an equivalent solution to the problem.
@@ -42,19 +42,21 @@ solutions to the relaxed one.
 1.2. f is our objective function.
 2. Thus, we have that any solution to the relaxation is a lower-bound to the original.
 3. Now we only need to prove that the solution x we achieve for the relaxation can be transformed to a solution
-x* for the original without changing the objective.
+x* for the original, without changing the objective.
 3.1. If we do that, we strengthen the above-written claim with equality and conclude the proof.
 4. Call this transformation of x* into x the function g.
 5. We trivially showed two implementations of g, which achieve equality of the relaxed constraints up to the desired precision
 6. Thus, we can transform an x* to an x and conclude the proof.
-7. It must be noted that 3.1. is trivial to argue by contradiction is one wishes to do so: indeed if an x*
+7. It must be noted that 3.1. is trivial to argue by contradiction if one wishes to do so: indeed if an x*
 can be transformed into an x, then either f(x*) is the optimum or it is not a lower bound to the original (contradiction)
+
+It must also be stated that the original problem needed to be relaxed in order to satisfy DCP rules:
+indeed, adding an absolute-value l.b. results in DCP violation.
 
 Additionally, we add that the solver would generally tend towards solutions that keep the energy waste to a minimum,
 since the Energy available determines to what degree the motor can be utilized. Clearly, more is beneficial to the
 objective function. As such, higher values of E are generally desirable and if one were choosing in which direction
-to violate the law of conservation of energy, the upper one would be the obvious choice. This is yet another explanation
-as to why the constraint relaxation the way it's been implemented makes the most sense for equivalence.
+to violate the law of conservation of energy, the upper one would be the obvious choice.
 
 Now for the technical part:
 The main functions are:
@@ -92,6 +94,11 @@ def _print_objective_state_and_vars(_Peng: cp.Variable,
                 f"Peng[{t}] = {_Peng[t].value}, Pmg[{t}] = {_Pmg[t].value},"
                 f" Pbr[{t}] = {_Pbr[t].value}, E[{t}] = {_E[t].value} \n")
         slack_values.append((_E.value[t] - _Pmg.value[t] - eta * abs(_Pmg.value[t])) - _E.value[t + 1])
+
+    if verbose:
+        for t in range(len(Preq)):
+            print(f"Error for Peng[{t}] + Pmg[{t}] - Pbr[{t}] - Preq[{t}] ="
+                  f"{(_Peng.value[t] + _Pmg.value[t] - _Pbr.value[t] - Preq[t])}")
 
     print(f"E[1] = {_E.value[0]}, E[{len(Preq) + 1}] = {_E.value[len(Preq)]}")
     print(f"Objective: {_prob.objective.value}")
@@ -238,8 +245,9 @@ def minimize_fuel_consumpt_using_postproc(ebatt_max):
 
 
 def car_with_battery():
+    print("\n\nCAR-WITH-BATTERY")
     Ebatt_max = 100.0
-    print("\n\nSolving problem with post-processing ...\n")
+    print("Solving problem with post-processing ...\n")
     retval = minimize_fuel_consumpt_using_postproc(Ebatt_max)
     print("\n=====================\n")
     print("Solving problem using Epsilon method ...\n")
@@ -247,13 +255,14 @@ def car_with_battery():
     return retval
 
 def car_without_battery():
+    print("\n\nCAR-WITHOUT-BATTERY")
     Ebatt_max = 0
-    print("\n\nSolving problem with post-processing ...\n")
+    print("Solving problem with post-processing ...\n")
     retval = minimize_fuel_consumpt_using_postproc(Ebatt_max)
     print("\n=====================\n")
     print("Solving problem using Epsilon method ...\n")
     retval_epsilon = minimize_fuel_consumpt_using_epsilon(Ebatt_max)
     return retval
 
-
+car_with_battery()
 car_without_battery()
