@@ -41,6 +41,27 @@ MAX_CONST_ERR = 0.0003
 # retval['Pbr'] is a list of floats of length T such that retval['Pbr'][t] = P_br(t+1) for each t=0,...,T-1
 # retval['E'] is a list of floats of length T+1 such that retval['E'][t] = E(t+1) for each t=0,...,T
 
+def _print_objective_state_and_vars(_Peng: cp.Variable,
+                                    _Pmg: cp.Variable,
+                                    _Pbr: cp.Variable,
+                                    _E: cp.Variable,
+                                    _prob: cp.Problem):
+
+    slack = []
+    slack_values = []
+    for t in range(len(Preq)):
+        slack += [(_E[t] - _Pmg[t] - eta * cp.abs(_Pmg[t])) - _E[t + 1]]
+        print(f"Slack for constraint {t} E: _E[{t}] - _Pmg[{t}]"
+              f" - eta * abs(_Pmg[{t}])) - _E[{t + 1}] = {slack[t].value}")
+        print(
+            f"Peng[{t}] = {_Peng[t].value}, Pmg[{t}] = {_Pmg[t].value},"
+            f" Pbr[{t}] = {_Pbr[t].value}, E[{t}] = {_E[t].value} \n")
+        slack_values.append((_E.value[t] - _Pmg.value[t] - eta * abs(_Pmg.value[t])) - _E.value[t + 1])
+
+    print(f"E[0] = {_E.value[0]}, E[{len(Preq)}] = {_E.value[len(Preq)]}")
+    print(f"Objective NO epsilon: {_prob.value}")
+    print(f"Max slack for constraint E: {max(slack_values)}")
+    return slack_values
 
 def _solve(
     e_batt_max: float, epsilon: float = 0.0
@@ -179,6 +200,9 @@ def solve_car_cp_pp(e_batt_max: float) -> typing.Dict[str, typing.List[float]]:
     prob, p_eng, p_mg, p_br, e = _solve(e_batt_max)
     prev_obj = prob.objective.value
     _post_process(p_eng, p_mg, p_br, e, e_batt_max)
+    _print_objective_state_and_vars(_Peng=p_eng, _Pbr=p_br,
+                                    _Pmg=p_mg, _E=e,
+                                    _prob=prob)
     _check_for_glitch(e, p_mg, prob.objective.value, prev_obj)
     retval = _propagate_retval(e, p_eng, p_mg, p_br)
     return retval, prob.objective.value
@@ -200,6 +224,9 @@ def solve_car_cp_eps(
         retval, prob.objective.value
     """
     prob, p_eng, p_mg, p_br, e = _solve(e_batt_max, eps)
+    _print_objective_state_and_vars(_Peng=p_eng, _Pbr=p_br,
+                                    _Pmg=p_mg, _E=e,
+                                    _prob=prob)
     _check_for_glitch(e, p_mg, prob.objective.value, no_eps_obj)
     retval = _propagate_retval(e, p_eng, p_mg, p_br)
     return retval, prob.objective.value
@@ -208,12 +235,14 @@ def solve_car_cp_eps(
 def car_with_battery():
     Ebatt_max = 100.0
     post_processed, pp_obj = solve_car_cp_pp(Ebatt_max)
-    with_eps, eps_obj = solve_car_cp_eps(Ebatt_max, 0.0002, pp_obj)
+    #with_eps, eps_obj = solve_car_cp_eps(Ebatt_max, 0.0002, pp_obj)
     return post_processed
 
 
 def car_without_battery():
     Ebatt_max = 0
     post_processed, pp_obj = solve_car_cp_pp(Ebatt_max)
-    with_eps, eps_obj = solve_car_cp_eps(Ebatt_max, 0.0002, pp_obj)
+    #with_eps, eps_obj = solve_car_cp_eps(Ebatt_max, 0.0002, pp_obj)
     return post_processed
+
+car_with_battery()
